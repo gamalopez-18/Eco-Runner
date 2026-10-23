@@ -8,66 +8,15 @@ Este documento contiene la especificación de diseño UML para el videojuego Eco
 
 Representa las interacciones principales del jugador dentro del juego.
 
-```mermaid
-graph TD
-    Jugador((Jugador))
+<img width="1028" height="433" alt="casos_de_uso png" src="https://github.com/user-attachments/assets/a3bda5be-d8c4-4452-bfdb-f5fd57d45b05" />
+---
 
-    subgraph Eco-Runner - Sistema de Juego
-        CU1[Navegar por ubicaciones]
-        CU2[Recolectar basura contra tiempo]
-        CU3[Clasificar residuos en contenedores]
-        CU4[Ganar monedas]
-        CU5[Consultar progreso y temporizador]
-    end
+## 2. Diagrama de Clases del Módulo Principal
 
-    Jugador --> CU1
-    Jugador --> CU2
-    Jugador --> CU3
-    Jugador --> CU4
-    Jugador --> CU5
+Estructura de clases del sistema para la implementación en RPG Maker.
 
-    CU2 .-> CU3 : <<include>>
-    CU3 .-> CU4 : <<include>>
+<img width="699" height="773" alt="diagrama_clases png drawio" src="https://github.com/user-attachments/assets/50e15abd-f890-4852-bc4e-2bb15b0e2356" />
 
-classDiagram
-    class Jugador {
-        +int idJugador
-        +string nombre
-        +int monedasObtenidas
-        +mover()
-        +recolectarBasura(Basura b)
-        +clasificarBasura(Basura b, ContenedorReciclaje c)
-    }
 
-    class Nivel {
-        +string numeroNivel
-        +float tiempoLimite
-        +int metaResiduos
-        +string ubicacion
-        +iniciarNivel()
-        +verificarTiempo()
-        +finalizarNivel()
-    }
 
-    class Basura {
-        +int idBasura
-        +string tipo
-        +desaparecer()
-    }
 
-    class ContenedorReciclaje {
-        +int idContenedor
-        +string tipoAceptado
-        +validarResiduo(Basura b) bool
-    }
-
-    class SistemaRecompensa {
-        +int multiplicadorPuntos
-        +calcularMonedas(int residuosCorrectos) int
-    }
-
-    Jugador "1" -- "*" Basura : recolecta >
-    Jugador "1" -- "*" ContenedorReciclaje : deposita en >
-    Nivel "1" *-- "*" Basura : contiene
-    Nivel "1" *-- "3" ContenedorReciclaje : posee
-    SistemaRecompensa ..> Jugador : otorga monedas a
