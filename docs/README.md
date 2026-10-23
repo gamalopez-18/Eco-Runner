@@ -1,4 +1,5 @@
 # Modelado del Proyecto Integrador en UML: Eco-Runner
+López Pazos Gamaliel y Rivera Matus Irving Emiliano.
 
 Este documento contiene la especificación de diseño UML para el videojuego Eco-Runner.
 
